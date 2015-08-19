@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Controller example Plunker</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.write('<base href="' + document.location + '" />');
+        function addState(state) {
+            debugger;
+            $scope.total = $scope.total + state;
+            $scope.$apply();
+        };
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body>
+    <h1>Welcome</h1>
+    <div>Controller example</div>
+    
+    <div ng-controller="SpicyCtrl">
+      <!--<input ng-model="customSpice" />
+        
+      <button ng-click="spicy('chili')">Chili</button>
+      <button ng-click="spicy(customSpice)">Custom spice</button>-->
+<br />
+City        <input  ng-model="city" ng-change="addLocation()"/>{{city}}
+        <br />
+<!--State        <input ng-model="state" onblur="addState({{state}})"/>{{state}}-->
+        State        <input ng-model="state" ng-change="addLocation()"/>{{state}}
+        <br />
+Total        <input ng-model="total" />{{total}}
+        
+
+      <p>The food is {{spice}} spicy!</p>
+    </div>
+    
+    
+  </body>
+
+</html>

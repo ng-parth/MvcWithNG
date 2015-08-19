@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="service-example">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Service example Plunker</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="../../JS/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body>
+    <h1>Welcome</h1>
+    <div>An example of a service</div>
+    <br/><br/>
+    <div>Controller 1</div>
+    <div ng-controller="FirstCtrl" class="border">
+      List Size: {{listSize}}
+      <br/>
+      <input type="text" ng-model="listValue" />
+      <input type="button" ng-click="addToList(listValue)" value="Add" />
+    </div>
+    <br/><br/><br/>
+    <div>Controller 2</div>
+    <div ng-controller="SecondCtrl" class="border">
+      List Size: {{listSize}}
+      <br/>
+      <input type="text" ng-model="listValue" />
+      <input type="button" ng-click="addToList(listValue)" value="Add" />
+    </div>
+    <br/><br/><br/>
+    <div>Controller 3</div>
+    <div ng-controller="ThridCtrl" class="border">
+      Display List Values <input type="button" value="Refresh" ng-click="refresh()" />
+      <br/>
+      <ul>
+        <li ng-repeat="value in list">
+          {{value}}
+        </li>
+      </ul>
+    </div>
+    <br/><br/><br/>
+    <div>Controller 4</div>
+    <div ng-controller="FourthCtrl" class="border">
+      Display List Values
+      <br/>
+      <ul>
+        <li ng-repeat="value in list">
+          {{value}}
+        </li>
+      </ul>
+    </div>
+  </body>
+
+</html>

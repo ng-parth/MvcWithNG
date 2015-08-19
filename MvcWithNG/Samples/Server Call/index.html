@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="server-call-example" ng-controller="timeCtrl" ng-init="init()">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Simple server call using AngularJS $http service.</title>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+    <script src="../../JS/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="json.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+</head>
+
+<body>
+    <h1>Welcome {{name}}</h1>
+    <div>
+        <div class="new">
+            Server call example: Get server's current date time:
+      <br />
+            <br />
+            <h4>{{time}}</h4>
+            <br />
+            <button ng-click="getTime()">Get Time!</button><br />
+            <br />
+        </div>
+        <div class="span12">
+            <ul class="nav nav-pills nav-stacked">
+                <!--<ul class="nav nav-pills nav-stacked"-->
+                <li ng-repeat="sampleJson in sampleJsons">{{sampleJson.id}} --- {{sampleJson.name}}
+                </li>
+            </ul>
+        </div>
+        <hr />
+
+        <hr />
+        <div ng-include src="'newHtml.html'">
+            <!--<table border="1" align="center">
+                <tr style="text-align: center">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>
+                        <input type="text" ng-model="search" placeholder="Search" /></th>
+                </tr>
+                <tr ng-repeat="sampleJson in sampleJsons | filter:search">
+                    <td>{{sampleJson.id}}</td>
+                    <td>&nbsp;
+                        <input type="text" ng-model="sampleJson.name" />
+                        &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.company}} &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.email}} &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.city}} &nbsp;</td>
+                    <td>
+                        <button ng-click="click(sampleJson.id)">Upd</button></td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center">--END--</td>
+                </tr>
+            </table>-->
+        </div>
+        <hr />
+        <div class="new">
+            <h4>Hello Div</h4>
+        </div>
+        <!--<div class="new">
+            <form action=" https://ssl.ditonlinebetalingssystem.dk/integration/ewindow/Default.aspx " method="post">
+                <input type="hidden" name="merchantnumber" value="8012413">
+                <br />
+                <input name="amount" value="10495">
+                <br />
+                <input name="currency" value="USD">
+                <br />
+                <input type="hidden" name="window state" value="4">
+                <input type="hidden" name="accepturl" value="http://localhost:58089/#/firsttimesetup" />
+                <br />
+                <input type="submit" value="Go to payment">
+            </form>
+        </div>-->
+
+    </div>
+    <div>
+    </div>
+
+    <div>
+        <!-- AddThis Button BEGIN -->
+        <!--<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51dce0dd08a4c76d"></script>-->
+        <!-- AddThis Button END -->
+
+    </div>
+</body>
+
+</html>

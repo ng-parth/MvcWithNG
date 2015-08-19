@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CoderDojo Chat</title>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>-->
+    <script src="../../JS/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.4.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body ng-app="coderDojoChat" ng-controller="chatController">
+    <div class="container-fluid">
+        <tabset>
+      <tab>
+        <tab-heading>
+          <i class="icon-envelope"></i>&nbsp;Messages
+        </tab-heading>
+        <div class="row-fluid">
+          <p>
+            <textarea 
+              ng-model="messageInput.value" 
+              placeholder="type your message here"
+              style="font-size:200%;line-height:150%"
+              class="span12"></textarea>
+              <br />
+              <a 
+              class='btn btn-primary btn-mini'
+              ng-click="sendMessage()" 
+              ng-disabled="sendMessageDisabled()"
+              >Send message</a>              
+              &nbsp;&nbsp;          
+              <a 
+              class='btn btn-mini'
+              ng-click="resetInput()" 
+              ng-disabled="resetInputDisabled()"
+              >Reset</a>  
+          </p>
+        </div>
+        <span class="label">Message Preview</span>&nbsp;<i class="icon-resize-vertical" ng-click="preview = !preview"></i>
+        <div class="well well-small" ng-bind-html-unsafe="messageInput.value" ng-init="preview = true" 
+        ng-show="preview"></div>
+        <hr />
+        <div ng-show='chatMessages.length == 0'>
+          <span class='label label-warning'>There are no messages yet. Send one!</span>
+        </div>
+        <div ng-show='chatMessages.length > 0'>        
+          <div 
+            ng-repeat='chatMessage in chatMessages'>
+            <span class='label'>{{chatMessage.sentAtTime | date:'short'}}&nbsp;--&nbsp;{{chatMessage.name}} says:</span>&nbsp;&nbsp;<span class="label label-inverse" ng-click="clone(chatMessage.content)">Clone & Edit</span>
+            <message content="chatMessage.content" />          
+          </div>          
+        </div>
+      </tab>
+      <tab>
+        <tab-heading>
+          <i class="icon-wrench"></i>&nbsp;Settings
+        </tab-heading>
+        <div class="row-fluid">
+          <h5>Name:</h5>
+          <input ng-model="name.value" class="span12" />
+          <h5>Chat message styles:</h5>
+          <textarea ng-model="chatBackgroundColor.value" class="span12" /></textarea>
+        </div>
+      </tab>
+    </tabset>
+    </div>
+    <div id="pubnub" pub-key="pub-c-f4a90e76-f06e-42b8-9594-3756a8bac175" sub-key="sub-c-daf9c6dc-e063-11e2-ab32-02ee2ddab7fe"></div>
+    <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

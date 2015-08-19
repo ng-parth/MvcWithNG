@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html ng-app="bookMe" ng-controller="bookMeCtrl">
+<head>
+    <title>Bookmark Me! </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <!--<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!--<link href="../../bootstrap/css/spacelab2.3.2.css" rel="stylesheet" />-->
+    <!--<link href="../../bootstrap/css/flatly2.3.2.css" rel="stylesheet" />-->
+    <!--<link href="../../bootstrap/css/readable2.3.2.css" rel="stylesheet" />-->
+    <link href="../../CSS/toastr.css" rel="stylesheet" />
+    <link href="css/bookMe.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="page-header">
+            <h3>Bookmark Me! </h3>
+            <div class="pull-right">
+            </div>
+        </div>
+
+        <div class="row-fluid" style="border: thin">
+            <div class="span2">
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#add" data-toggle="tab">(01) Add Bookmark</a>
+                        </li>
+                        <li>
+                            <a href="#view" data-toggle="tab">(02) View Bookmarks</a>
+                        </li>
+                        <li>
+                            <a href="#ngBind" ng-click="initClick()" data-toggle="tab">(03) NG-Bind</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span10 ">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="add">
+                        <form class="form-horizontal" name="bookMe">
+                            <!--<div class="control-group">
+                                <label class="control-label" for="date">Date</label>
+                                <div class="controls">
+                                    <input type="text" id="date" placeholder="Date" />
+                                </div>
+                            </div>-->
+                            <div class="control-group">
+                                <label class="control-label" for="url">URL:</label>
+                                <div class="controls">
+                                    <input type="text" id="url" placeholder="Paste Link Here!" ng-model="bookM.Url" required />*
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="title">Title:</label>
+                                <div class="controls">
+                                    <input type="text" id="title" placeholder="Add title for this link!" ng-model="bookM.Title" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="tag">Tags:</label>
+                                <div class="controls">
+                                    <input type="text" id="tag" placeholder="Add tags for this link!" ng-model="bookM.Tags" />
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button class="btn btn-primary" ng-click="addBook(bookM)" ng-disabled="!bookMe.$valid"><i class="icon-bookmark"></i>&nbsp;Bookmark Me!</button>
+                                    <span ng-show="showLoader">
+                                        <img src="img/wait.gif" alt="Plz Wait.." /></span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="control-group">
+                            <label class="control-label" for="tag">Raise Toast:</label>
+                            <div class="controls">
+                                <button ng-click="myToast()">Tasty Toast!</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Try:</label>
+                            <div class="controls">
+                                <input type="text" ng-model="name" id="name1" />
+                                <button ng-click="click()">Test !</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="view">
+                        <div class="row-fluid">
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">List</label>
+                                    <div class="controls">
+                                        <button class="btn btn-primary" ng-click="getData()">Get Latest Links!</button>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">From</label>
+                                    <div class="controls">
+                                        <input type="text" datepicker-popup="dd-MMMM-yyyy" show-weeks="false" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" />
+                                        <button type="button" class="btn" ng-click="openNow()"><i class="icon-calendar"></i></button>
+                                        Date : {{dt}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span10">
+                                <div ng-show="show">
+                                    <table class="table-condensed table-hover" border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No.</th>
+                                                <th>URL</th>
+                                                <th>Title</th>
+                                                <th>Tags</th>
+                                                <th>Date</th>
+                                                <th><i class="icon-edit"></i></th>
+                                                <th><i class="icon-trash"></i></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="input-mini" ng-model="search.Id" style="width: 20px;" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" ng-model="search.Url" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" ng-model="search.Title" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" ng-model="search.Tags" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" ng-model="search.all" placeholder="Complex search" />
+                                                </td>
+                                                <td><i class="icon-ban-circle"></i>
+                                                </td>
+                                                <td><i class="icon-align-justify"></i>
+                                                </td>
+                                            </tr>
+                                            <tr ng-repeat="bookMark in bookMarks | filter :  {Id: search.Id, Url:  search.Url, Title : search.Title, Tags : search.Tags } " ng-class="bookMark.Tags | classfilter : bookMark : conditionalObject" class="table-hover">
+                                                <!--| filter: {search.all}-->
+
+                                                <td>{{bookMark.Id | lt25}}</td>
+                                                <td><a href="{{bookMark.Url}}" target="_blank">{{bookMark.Url}}</a> </td> <!--<i class="icon-edit pull-right" ng-click="editUrl(bookMark.Id)"></i>-->
+                                                <td>{{bookMark.Title}}</td>
+                                                <td>{{bookMark.Tags}}</td>
+                                                <td>{{bookMark.Date }}</td>
+                                                <!--<td>{{bookMark.Date | date: mediumDate}}</td>-->
+                                                <td><a ng-click="editBookMark(bookMark)"><i class="icon-edit"></i></a></td>
+                                                <td><a ng-click="deleteBookMark(bookMark.Id)"><i class="icon-trash"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Total Records:
+                                                </th>
+                                                <td>{{bookMarks.length | filter :  {Id: search.Id, Url:  search.Url, Title : search.Title, Tags : search.Tags } }}
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="ngBind">
+                        <div>
+                            <form name="newF" ng-init="newA={};" action="../PrintMe/Mail1.aspx/GetData()" id="newF">
+                                <div ng-repeat="item in listItem">
+                                    <label class="control-label" for="input{{item.id}}">{{item.title}}:</label>
+                                    <div class="controls">
+                                        <!--  <input ng-init="initTextBox();" class="valNum" type="text" id="input{{item.id}}" ng-model="newA[item.title]" />-->
+                                        <input type="text" id="input{{item.id}}" ng-model="newA[item.title]" />
+                                    </div>
+                                </div>
+                                <!--<label class="control-label" for="url">1:</label>
+                                <div class="controls">
+                                    <input type="text" id="Text1" placeholder="Paste Link Here!" ng-model="aa.1" required />*
+                                </div>
+                                <label class="control-label" for="url">2:</label>
+                                <div class="controls">
+                                    <input type="text" id="Text2" placeholder="Paste Link Here!" ng-model="aa.2" required />*
+                                </div>
+                                <label class="control-label" for="url">3:</label>
+                                <div class="controls">
+                                    <input type="text" id="Text3" placeholder="Paste Link Here!" ng-model="aa.3" required />*
+                                </div>
+                                <label class="control-label" for="url">4:</label>
+                                <div class="controls">
+                                    <input type="text" id="Text4" placeholder="Paste Link Here!" ng-model="aa.4" required />*
+                                </div>
+                                <label class="control-label" for="url">All:</label>
+                                <div class="controls">
+                                    <input type="text" id="message" placeholder="Paste Link Here!" ng-model="aa" disabled />
+                                </div>
+                                <textarea ng-model="t" id="tArea">
+
+                            </textarea>
+                                <textarea ng-model="tA" id="Textarea1">
+
+                            </textarea>-->
+
+                                <pre>
+                                {{newA | json}}
+                            </pre>
+                                <button type="button" class="btn" ng-click="sendData(newA)"><i class="icon-calendar"></i></button>
+                                <input type="submit" value="DataSubmit" />
+                            </form>
+
+                            <table  class="table-hover table-bordered" style="vertical-align:bottom">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Phone</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in items">
+                                        <td style="padding-bottom:10px" >{{item.id}}</td>
+                                        <td >
+                                            <input type="text" ng-model="item.name" ng-disabled="!item.active" /></td>
+                                        <td>
+                                            <input type="number" ng-model="item.age" ng-disabled="!item.active" min="0" max="100" /></td>
+                                        <td>
+                                            <input type="number" ng-model="item.number" ng-disabled="!item.active" maxlength="12" /></td>
+                                        <td>
+                                            <i class="icon-edit" style="cursor: pointer" ng-click="edit(item.id)" ng-show="!item.active"></i>
+                                            <i class="icon-ok" style="cursor: pointer" ng-click="save(item.id)" ng-show="item.active"></i></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <!-- <link href="//mgcrea.github.com/angular-strap/css/prettify.css" rel="stylesheet">
+                            <link href="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.css" rel="stylesheet">
+                            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+                            <script src="//mgcrea.github.com/angular-strap/js/angular-strap.js"></script>
+                            <script src="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>
+                            <script>
+                                bookMe.$inject = ['$strap.directives'];
+                            </script>-->
+                            <!--<script>
+                                
+                                    var newTest = angular.module('newTest', ['ng', '$strap.directives']);
+                                    newTest.filter('gt25', function () {
+                                        return function (input) {
+                                            if (parseInt(input) > 25) {
+                                                input = input + ' GT_25';
+                                                var a = this;
+                                            }
+                                            return input;
+                                        }
+                                    });
+                                    newTest.controller('mainCtrl', function ($scope) {
+                                        $scope.datepicker = { date: '2012-09-01T00:00:00.000Z' };
+                                    });
+                                
+                            </script>-->
+                            <div>
+                                <div class="span8 offset2 well">
+                                    <input type="date" ng-model="datepicker.date" data-date-format="dd-mm-yyyy" bs-datepicker>
+                                    Date: {{datepicker.date}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <div id="loader" class="loaderModal hide fade" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <img src="img/ajax-loader (1).gif" alt="loading.." />
+        </div>
+    </div>
+    <div id="editBookM" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 id="myModalLabel">Edit Bookmark</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" name="eBookMe">
+                <div class="control-group">
+                    <label class="control-label" for="url">URL:</label>
+                    <div class="controls">
+                        <input type="text" placeholder="Paste Link Here!" ng-model="eBookM.Url" required />*
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="title">Title:</label>
+                    <div class="controls">
+                        <input type="text" placeholder="Add title for this link!" ng-model="eBookM.Title" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="tag">Tags:</label>
+                    <div class="controls">
+                        <input type="text" placeholder="Add tags for this link!" ng-model="eBookM.Tags" />
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" ng-click="putBookMark(eBookM)" ng-disabled="!eBookMe.$valid"><i class="icon-bookmark"></i>&nbsp;Save Bookmark!</button>
+        </div>
+    </div>
+
+    <!--//================Footer========================//-->
+    <div id="footer">
+        <div class="container">
+            <p>Bookmark Me! -- Effortless :) <a href="../../new.html">Other <i class="icon-share-alt"></i></a></p>
+        </div>
+    </div>
+    <!--//================End Footer====================//-->
+    <!-- Include jQuery and Boostrap. -->
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <script src="../../Scripts/jquery-1.8.2.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>-->
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <script src="../../JS/angular.js"></script>
+    <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>-->
+    <script src="../../JS/toastr.js"></script>
+    <script src="../../JS/moment.min.js"></script>
+    <script>
+        var ctrl = angular.module('ctrl', []);
+        ctrl.directive('ddl', function ($scope) {
+            
+        });
+        
+    </script>
+    <!--<link href="//mgcrea.github.com/angular-strap/css/prettify.css" rel="stylesheet">
+    <link href="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="//mgcrea.github.com/angular-strap/js/angular-strap.js"></script>
+    <script src="//mgcrea.github.com/angular-strap/vendor/bootstrap-datepicker.js"></script>-->
+
+    <script src="js/appCtrl.js"></script>
+   <!-- <script>
+        var a = Date();
+        bookMe.requires.push('$strap.directives');
+        var b = typeof bookMe;
+        //bookMeCtrl.$inject = ['$strap.directives'];
+        //var a = bookMe;
+        //var b = newTest;
+    </script>-->
+
+</body>
+</html>

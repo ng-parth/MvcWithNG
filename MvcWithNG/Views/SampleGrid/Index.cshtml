@@ -1,0 +1,33 @@
+﻿@model MvcWithNG.Models.SampleGridModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model.lstMyList)
+    {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

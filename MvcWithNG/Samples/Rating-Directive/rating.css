@@ -1,0 +1,57 @@
+.rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+}
+
+ul.rating {
+    display: inline-block;
+}
+
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rating .filled {
+    color: #0026ff;
+}
+
+.box {
+    border: thin;
+    border-style: dashed;
+    border-color: AppWorkspace;
+    padding: 5px;
+}
+
+.bgLite {
+    color: #0026ff;
+    background-color: ActiveCaption;
+}
+
+.pValid {
+    border-left:5px solid #00ff90;
+}
+
+/*input.pValid {
+    border-left:5px solid #00ff90;
+}*/
+
+
+/*input.ng-invalid {
+  border-left: 5px solid red;
+}
+input.ng-valid {
+  border-left: 5px solid green;
+}*/
+
+.invalid {
+  border-left: 5px solid red !important;
+}
+.valid {
+  border-left: 5px solid green !important;  
+}

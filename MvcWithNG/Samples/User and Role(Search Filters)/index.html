@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="search-example">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Search example Plunker</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="../../JS/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="SearchCtrl">
+    <h1>Welcome</h1>
+    <div>Search example using a Filter</div>
+    <div>
+      <br/>
+      Note: This searches the entire object so any text in user.name or user.roles will be searched.
+      <br/><br/>
+    </div>
+    <div class="app">
+      Search: <input type="text" ng-model="query" />
+      <div>
+        <ul>
+          <li ng-repeat="user in users | filter:query">
+            {{user.name}}
+            <ul>
+              <li ng-repeat="role in user.roles">
+                {{role.name}}
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+    
+  </body>
+
+</html>

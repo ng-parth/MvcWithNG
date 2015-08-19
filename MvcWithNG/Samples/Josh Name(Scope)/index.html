@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>$scope example</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="../../JS/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="MainCtrl">
+    <h1>Welcome </h1>
+      <div>A $scope example</div>
+    <div>
+      There is a solid blue line around each .ng-scope element.
+    </div>
+    <div ng-repeat="roles in user.roles">
+      {{user.name}}
+      {{roles.name}}
+    </div>
+    <div>
+      Type here to change user.name value: <input type="text" ng-model="user.name" />
+      <br/>
+      Type here to change just the first role's name value: <input type="text" ng-model="user.roles[0].name" />
+    </div>
+    <br/>
+    <div>
+      Hope this helps...
+    </div>
+  </body>
+</html>

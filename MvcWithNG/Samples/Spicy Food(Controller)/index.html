@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-starter">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Controller example Plunker</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="../../JS/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body>
+    <h1>Welcome</h1>
+    <div>Controller example</div>
+    
+    <div ng-controller="SpicyCtrl">
+      <input ng-model="customSpice" />
+      <button ng-click="spicy('chili')">Chili</button>
+      <button ng-click="spicy(customSpice)">Custom spice</button>
+      <p>The food is {{spice}} spicy!</p>
+    </div>
+    
+    
+  </body>
+
+</html>

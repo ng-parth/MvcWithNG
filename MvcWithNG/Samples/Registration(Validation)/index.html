@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="validation-example">
+  
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Validation Example Plunker</title>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+      <script src="../../JS/angular.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="MainCtrl">
+    <h1>Welcome</h1>
+    <div>This is a simple form validation example.</div>
+    <div class="example">
+      <form name="form" novalidate>
+        <span class="label">Name:</span> <input type="text" ng-model="user.name" name="username" required />
+        <span class="errorText" ng-show="form.username.$error.required">Required</span>
+        <span class="passText" ng-show="!form.username.$error.required">&#10003;</span>
+        <br />
+        <span class="label">E-mail:</span> <input type="email" ng-model="user.email" name="useremail" required/>
+        <span class="errorText" ng-show="form.useremail.$error.required">Required</span>
+        <span class="errorText" ng-show="form.useremail.$error.email">Not a valid email</span>
+        <span class="passText" ng-show="!form.useremail.$error.required && !form.useremail.$error.email">&#10003;</span>
+        <br/>
+        <button ng-click="addUser(user)"
+                ng-disabled="form.$invalid || isDuplicate(user)">ADD</button>
+      </form>
+      <div>
+        <h4>Registered Personnel</h4>
+        <ul>
+          <li ng-show="!users.length" class="user">No Personnel</li>
+          <li ng-repeat="storedUser in users" class="user">
+            {{storedUser.name}} ---
+            {{storedUser.email}}
+            <button ng-click="removeUser(storedUser)">Remove</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+
+</html>

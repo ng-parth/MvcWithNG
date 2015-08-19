@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS - TreeView Test</title>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+    <script src="../../JS/angular.js"></script>
+  <script src="treeview.js"></script>
+  <script src="treectrl.js"></script>
+  <style>
+	.item
+	{
+		padding-left : 45px;
+	}
+  </style>
+</head>
+<body>
+	<div ng-controller="TreeCtrl">
+        <label>Level : 
+		<select ng-model="level">
+			<option ng-repeat="levelNo in levelNos" value="{{levelNo}}">{{levelNo}}</option>
+		</select>
+		</label>
+		<tree-view model="product" level="level" click="myClick(node)" maxlevels="10">
+		</tree-view>
+
+		<hr/>
+
+		<!--<tree-view model="nodes" click="myClick(node)" maxlevels="10">
+		</tree-view>-->
+
+		
+
+		<hr />
+		<!--<pre>
+nodes   : {{nodes | json}}
+		</pre>-->
+	</div>
+</body>
+</html>

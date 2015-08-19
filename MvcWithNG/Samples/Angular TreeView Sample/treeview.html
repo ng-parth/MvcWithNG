@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS - TreeView Test</title>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>-->
+    <script src="../../JS/angular.js"></script>
+    <script src="angular.tree.js"></script>
+    <script src="treectrl.js"></script>
+    
+    <style>
+        .item {
+            padding-left: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="TreeCtrl">
+        <ol ng-tree="products">
+            <li>{{item.propertyGroup}} {{item.property}}</li>
+        </ol>
+    </div>
+</body>
+</html>

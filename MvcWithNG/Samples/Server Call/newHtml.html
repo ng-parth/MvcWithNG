@@ -1,0 +1,29 @@
+﻿<div class="span12" >
+            <table border="1" align="center">
+                <tr><th colspan="6"> From newHtml</th></tr>
+                <tr style="text-align: center">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>
+                        <input type="text" ng-model="search" placeholder="Search" /></th>
+                </tr>
+                <tr ng-repeat="sampleJson in sampleJsons | filter:search">
+                    <td>{{sampleJson.id}}</td>
+                    <td>&nbsp;
+                        <input type="text" ng-model="sampleJson.name" />
+                        &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.company}} &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.email}} &nbsp;</td>
+                    <td>&nbsp; {{sampleJson.city}} &nbsp;</td>
+                    <td>
+                        <button ng-click="click(sampleJson.id)">Upd</button></td>
+                    <!--onclick="click(sampleJson.id)"-->
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center">--END--</td>
+                </tr>
+            </table>
+</div>

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Collapsable TreeView</title>
+    <link href="treeview.css" rel="stylesheet" />
+    <script src="../../JS/angular.js"></script>
+    <script src="treectrl.js"></script>
+</head>
+<body>
+
+    <div ng-app="myApp">
+        <div ng-controller="myController">
+
+            <div>
+                <input type="button" value="TREE MODEL 1" data-ng-click="roleList = roleList1" />
+                <input type="button" value="TREE MODEL 2" data-ng-click="roleList = product" />
+            </div>
+
+            <div style="margin: 10px 0 30px 0; padding: 10px; background-color: #EEEEEE; border-radius: 5px; font: 12px Tahoma;">
+                <span><b>Selected Node</b> : {{mytree.currentNode.property}}</span>
+            </div>
+
+            <!--
+      [TREE attribute]
+      angular-treeview: the treeview directive
+      tree-id : each tree's unique id.
+      tree-model : the tree model on $scope.
+      node-id : each node's id
+      node-label : each node's label
+      node-children: each node's children
+    -->
+            <div
+                data-angular-treeview="true"
+                data-tree-id="mytree"
+                data-tree-model="roleList"
+                data-node-id="roleId"
+                data-node-label="property "
+                data-node-children="children">
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

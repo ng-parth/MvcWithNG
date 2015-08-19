@@ -1,0 +1,13 @@
+.blueborder {
+  border: 1px dotted blue;
+  padding: 3px;
+}
+body {
+    margin: 0;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: Lucida Sans Unicode, Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #ffffff;
+}

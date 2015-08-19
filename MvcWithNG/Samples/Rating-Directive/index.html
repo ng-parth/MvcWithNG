@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ng-app="FundooDirectiveTutorial" ng-controller="FundooCtrl" ng-init="init()">
+<head>
+    <title>Rating Directive Demo</title>
+    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../CSS/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="rating.css" rel="stylesheet" />
+
+</head>
+<body ng-init="rating = 5">
+    <div class="box">
+        <h3>Rating Directive </h3>
+        Rating is {{rating}}
+        <br />
+        Clickable Rating
+        <br />
+        <div fundoo-rating rating-value="rating" max="10" on-rating-selected="alertPop(rating)"></div>
+        <br />
+        Readonly rating
+        <br />
+        <div fundoo-rating rating-value="rating" max="10" readonly="true"></div>
+        <button ng-click="rating = 7">Change rating to 7</button>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="box">
+        <!--<p-text-box pclass="bgLite" bg-text="Hi Texty.." obj="text"></p-text-box>-->
+        <form>
+            PTEXT Box:
+            <p-text-box pclass="pValid" bg-text="placeHolderText" obj="text"></p-text-box>
+            <br />
+            TextBox :
+            <input type="text" ng-model="now" required />
+            <button ng-click="getText(text)">Get TextBox Value!</button>
+        </form>
+    </div>
+    <br />
+    <hr />
+    <h4 style="color: Background">My Required RnD</h4>
+    <form name="form">
+        <input type="text" ng-model="testName" my-required /><span class="text-info pValid"> Form is valid ??{{form.$valid}}</span>
+        <br />
+        <button class="btn-success btn" ng-disabled="!form.$valid">Click</button>
+    </form>
+    <hr />
+
+    <input type="text" class="span2" value="" id="dpd1">
+    <span class="span1"></span>
+    <input type="text" class="span2" value="" id="dpd2">
+    <br />
+    <!--<span class="span1"></span> {{today}}-->
+    <!--<input type="text" ng-model="myStartDate" class="span2" start-enable="today" today="now" placeholder="rx-date Start-from-today" rx-date />{{myStartDate}}-->
+    <!--<input type="text" ng-model="today" class="span2"   placeholder="select-today" rx-date />-->
+    <span class="span1"></span>
+    <input type="text" ng-model="myStartDate" class="span2" start-enable="today" placeholder="rx-date Start-from-today" rx-date />{{myStartDate}}
+    <span class="span1"></span>
+    <input type="text" ng-model="myEndDate" end-enable="today" placeholder="rx-date End-to-today" rx-date />{{myEndDate}}
+        <div class="input-append">
+            <input class="span2" id="appendedInputButton" type="text">
+            <button class="btn" type="button"><i class="icon-calendar"></i></button>
+        </div>
+    <br />
+    <h5>New Date Control</h5>
+    <div rx-new-date rxmodel="newDate" />
+    <br />
+    <br />
+    <br />
+    <div class="box">
+        control:
+        <p-dropdown output="abc" obj="dropDowns" on-selection="changeEvent()"></p-dropdown>
+        {{abc}}
+        <br />
+        <select ng-model="cModel">
+            <option ng-repeat="dropDown in dropDowns" value="{{dropDown.id}}">{{dropDown.text}}</option>
+        </select>--Id: {{cModel}} -- Text:{{}}
+        <br />
+        <button ng-click="addNewDropdown()">Add</button>
+        <br />
+        <div id="test"></div>
+
+        <br />
+        <hr />
+        <input type="text" ng-model="today" class="span2" placeholder="select-today" rx-date />
+        <button class="btn btn-mini" ng-click="getWeekDetail(today)">Get Week</button>
+
+        <br />
+        <h3>Test DDL Here -> {{ddl}} </h3>
+        <select ng-options="d.id as d.text for d in dropDowns" ng-model="ddl" multiple></select>
+
+        <hr />
+
+
+
+    </div>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>-->
+    <script src="../../Scripts/jquery-1.8.2.js"></script>
+    <script src="../../JS/angular.js"></script>
+    <script src="../../JS/moment.js"></script>
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <script src="../../JS/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="rating.js"></script>
+</body>
+</html>
+
+<!--<body ng-app="FundooDirectiveTutorial" ng-controller="FundooCtrl">
+
+    Rating is {{rating}}
+    <br />
+    Clickable Rating
+    <br />
+    <div fundoo-rating rating-value="rating" max="10" on-rating-selected="saveRatingToServer(rating)"></div>
+    <br />
+    Readonly rating
+    <br />
+    <div fundoo-rating rating-value="rating" max="10" readonly="true"></div>
+</body>-->
+
